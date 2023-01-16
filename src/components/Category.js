@@ -7,13 +7,11 @@ export const Category = (props) => {
         props.setEmpty(false);
     }
     return(
-        <div className='category__wrapper'>
-            <div className={props.categorySelected==props.category.category_name?'category__container active':'category__container'} onClick={onHandle} >
-                <div className='category__img_wrapper'>
-                    {props.img}
-                </div>
-                <div className='category__title'>{props.category.category_name}</div>
+        <div className={props.categorySelected==props.category.category_name?'category__container active':'category__container'} onClick={onHandle} >
+            <div className='category__img_wrapper'>
+                {props.img}
             </div>
+            <div className='category__title'>{props.category.category_name}</div>
         </div>
     )
 }

@@ -8,7 +8,7 @@ export const SetWord = (props) =>{
     useEffect(()=>{
     }, [indexWord])
     function onHandle(){
-        if(props.words[indexWord].translates.includes(inputWord.current.value)){
+        if(props.words[indexWord].translates.includes(inputWord.current.value.trim().toLowerCase())){
             if(props.words[indexWord + 1]!=null){
                 setIndexWord(indexWord + 1);
                 setFalseWord(true);

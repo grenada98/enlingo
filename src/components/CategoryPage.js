@@ -63,6 +63,8 @@ export const CategoryPage = (props) => {
     return (
         <div className={props.active ? 'categories-page active' : 'categories-page'}>
             <div className='statistics' onClick={props.setWindowActive}>Статистика</div>
+            <div className='add-words'>Додати слова</div>
+            <div className='select-category'>Оберіть категорію</div>
             <div className='categories-wrapper'>
                 {
                     data.map(function (key, index) {
