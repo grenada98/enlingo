@@ -18,7 +18,7 @@ export const CategoryPage = (props) => {
             words: [
                 {
                     eng: 'apple',
-                    translates: ['яблоко', 'яблоко 2']
+                    translates: ['яблуко']
                 },
             ]
         },
@@ -27,7 +27,7 @@ export const CategoryPage = (props) => {
             words: [
                 {
                     eng: 'fork',
-                    translates: ['вилка', 'вииилка']
+                    translates: ['виделка']
                 },
             ]
         },
@@ -36,11 +36,11 @@ export const CategoryPage = (props) => {
             words: [
                 {
                     eng: 'tomato',
-                    translates: ['помидор']
+                    translates: ['помідор']
                 },
                 {
                     eng: 'potato',
-                    translates: ['картошка']
+                    translates: ['картопля']
                 }
             ]
         },
@@ -49,7 +49,7 @@ export const CategoryPage = (props) => {
             words: [
                 {
                     eng: 'cat',
-                    translates: ['кот', 'кошка']
+                    translates: ['кіт', 'кішка']
                 }
             ]
         }
