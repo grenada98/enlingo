@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import {CategoryPage} from './components/CategoryPage';
+import { Statistics } from './components/Statisctics';
+import React, { useEffect, useState } from 'react';
 
 function App() {
+  const [active, setActive] = useState(true);
+  const [isLocal, setIsLocal] = useState(false);
+  console.log(isLocal)
+  function setWindowActive(){
+    if(localStorage.getItem("words")){
+      setIsLocal(true)
+    }
+    else{
+      setIsLocal(false)
+    }
+    setActive(!active);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CategoryPage active={active} setWindowActive={setWindowActive} isLocal={isLocal} setIsLocal={setIsLocal}/>
+      <Statistics active={active} setWindowActive={setWindowActive} isLocal={isLocal} setIsLocal={setIsLocal}/>
     </div>
   );
 }
