@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 export const SetWord = (props) =>{
     const inputWord = useRef();
     let [indexWord, setIndexWord] = useState(0);
-    let [falseWord, setFalseWord] = useState(true);
+    let [falseWord, setFalseWord] = useState(true); //правильное ли ввели слово
     const dataLocal = [];
     useEffect(()=>{
     }, [indexWord])
@@ -22,6 +22,11 @@ export const SetWord = (props) =>{
         else{
             setFalseWord(false)
             dataLocalWrong(props.words[indexWord].eng);
+        }
+    }
+    function pressEnter(e){
+        if(e.keyCode == 13){
+            onHandle();
         }
     }
     function dataLocalRight(obj){
@@ -91,7 +96,7 @@ export const SetWord = (props) =>{
     return(
         <div className='word__container'> 
             <div className='word__eng-variant'>{props.words[indexWord].eng}</div>
-            <input ref={inputWord} className={props.falseWord?'word__input': 'word__input wrong'} placeholder='Перевод...'></input>
+            <input ref={inputWord} className={falseWord?'word__input': 'word__input wrong'} placeholder='Перевод...' onKeyUp={(e)=>{pressEnter(e)}}></input>
             <div className={falseWord? 'word__notice': 'word__notice active'}>Неправильно! Спробуйте ще раз.</div>
             <button className='word__button' type='button' onClick={onHandle}>Перевірити</button>
         </div>

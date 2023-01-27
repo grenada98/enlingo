@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import {Routes, Route, Link} from 'react-router-dom';
+import { CategoryPage } from './CategoryPage';
 
 export const Statistics = (props) => {
     let userData = [];
@@ -7,8 +9,10 @@ export const Statistics = (props) => {
     }
 
     return(
-        <div className={props.active? 'statistics-page': 'statistics-page active'}>
-            <div className='main-page' onClick={props.setWindowActive}>Головна сторінка</div>
+        <div className={props.activeStatistics? 'statistics-page active': 'statistics-page'}>
+            <Link className='main-page' 
+                onClick={props.setCategoryPageActive} to="/"
+            >Головна сторінка</Link>
             <table className={props.isLocal?'statistics__table-wrapper active':'statistics__table-wrapper'}>
                 <thead>
                     <tr>
@@ -32,7 +36,14 @@ export const Statistics = (props) => {
                     }
                 </tbody>
             </table>
-            <div className={props.isLocal? 'notice': 'notice active'}>Ви ще не проходили навчання!</div>
+            {
+                !props.isLocal?(
+                    <div className='notice'>Ви ще не проходили навчання!</div>
+                    ) : null
+            }
+            <Routes>
+                <Route path="/" element={<CategoryPage/>}/>
+            </Routes>
         </div>
     )
 }
