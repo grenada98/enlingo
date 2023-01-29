@@ -13,10 +13,20 @@ html, body{
 body{
     padding: 10px;
 }
+$maxWidth: 1280;
+@mixin adaptiv-font($pcSize, $mobSize) {
+ $addSize: $pcSize - $mobSize;
+ $maxWidth: $maxWidth - 320;
+ font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}
 .categories-page{
     display: none;
     &.active{
         display: block;
+    }
+    &__no-words{
+        margin-top: 20px;
+        text-align: center;
     }
 }
 .statistics-page{
@@ -45,6 +55,9 @@ body{
     &:hover{
         color: rgb(132, 183, 241);
     }
+}
+.to-main{
+    margin-right: 0;
 }
 .add-words{
     margin-right: 0;
@@ -115,6 +128,7 @@ body{
     &__title{
         text-transform: uppercase;
         font-weight: 700;
+        @include adaptiv-font(30, 16);
     }
 }
 .word{
@@ -137,6 +151,8 @@ body{
     &__container{
         display: flex;
         flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
     &__eng-variant{
         margin-bottom: 50px;
@@ -149,9 +165,13 @@ body{
         border-radius: 10px;
         margin-bottom: 20px;
         padding: 10px;
+        @include adaptiv-font(30, 12);
         &.wrong{
             border: 2px solid red;
             outline-color: red;
+        }
+        @media (max-width: 900px){
+            width: 90%;
         }
     }
     &__notice{
@@ -202,8 +222,36 @@ tbody{
         }
     }
     &__delete{
-        width: 20px;
-        height: 20px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+}
+.vocabulary{
+    &__table-wrapper{
+        width: 100%;
+    }
+    &__row{
+        width: 100%;
+        border-bottom: 1px solid black;
+        td{
+            text-align: start;
+            border-left: 1px solid black;
+            padding-left: 10px;
+            width: 50%;
+            &:first-child{
+                text-align: end;
+                border-left: none;  
+                padding-right: 10px;
+            }
+        }
+        &:nth-child(2n){
+            background-color: #f2f1f1;
+        }
+    }
+    &__delete{
+        width: 40px;
+        height: 40px;
         cursor: pointer;
     }
 }

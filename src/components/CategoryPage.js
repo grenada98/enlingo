@@ -1,4 +1,3 @@
-import { Category } from './Category';
 import { WordPanel } from './WordPanel';
 import React, { useEffect, useState } from 'react';
 import {Routes, Route, Link} from 'react-router-dom';
@@ -6,11 +5,12 @@ import { Statistics } from './Statisctics';
 import { NoFoundPage } from './NoFoundPage';
 import { NewWord } from './NewWord';
 import { category_img } from './CategoryImg';
+import { CategoryList } from './CategoryList';
 
 export const CategoryPage = (props) => {
-    const [categorySelected, setCategorySelected] = useState('');
-    const [wordsSelected, setWordsSelected] = useState([]);
-    let [empty, setEmpty] = useState(false);
+    const [categorySelected, setCategorySelected] = useState(''); //выбранная категория
+    const [wordsSelected, setWordsSelected] = useState([]); //слова с выбранной категории
+    let [empty, setEmpty] = useState(false); //все ли слова пройдены
     const dataEnlingo = JSON.parse(localStorage.getItem('enlingo'));
 
     return (
@@ -23,17 +23,15 @@ export const CategoryPage = (props) => {
                 <div className='add-words' onClick={props.setNewWordPageActive}>Додати слова</div>
             </div>
             <div className='title'>Оберіть категорію</div>
-            <div className='categories-wrapper'>
-                {
-                    dataEnlingo.map(function (key, index) {
-                        return (
-                            <Category key={index} setEmpty={setEmpty} category={key} img={category_img[key.category_name]} categorySelected={categorySelected} setCategory={setCategorySelected} setWords={setWordsSelected} />
-                        )
-                    })
-                }
-            </div>
-            {wordsSelected.length>0? <WordPanel words={wordsSelected} empty={empty} setEmpty={setEmpty} />:
-            <div>В цій категорії ще не додано слів!</div>}
+            <CategoryList 
+                dataEnlingo={dataEnlingo}
+                setEmpty={setEmpty} 
+                img={category_img} 
+                categorySelected={categorySelected} 
+                setCategory={setCategorySelected} 
+                setWords={setWordsSelected}/>
+            {categorySelected.length>0&&wordsSelected.length>0? <WordPanel words={wordsSelected} empty={empty} setEmpty={setEmpty} />: null}
+            {categorySelected.length>0&&wordsSelected.length<1 ?<div className='categories-page__no-words'>В цій категорії ще не додано слів!</div>: null}
             <Routes>
                 <Route path="/statistics" element={<Statistics/>}/>
                 <Route path="/add-words" element={<NewWord/>}/>

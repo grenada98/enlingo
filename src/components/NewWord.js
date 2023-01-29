@@ -3,6 +3,7 @@ import { Category } from './Category';
 import { category_img } from './CategoryImg';
 import {ReactComponent as Basket} from '../svg/basket.svg'
 import {Routes, Route, Link} from 'react-router-dom';
+import { CategoryList } from './CategoryList';
 
 export const NewWord = (props) => {
     const [categorySelected, setCategorySelected] = useState('');
@@ -45,7 +46,9 @@ export const NewWord = (props) => {
     }
     return(
         <div className={props.activeNewWord? "adding__wrapper active": "adding__wrapper"}>
-            <Link className='to-main' to={'/'} onClick={backToMain}>На головну</Link>
+            <div className='route-pages'>
+                <Link className='to-main' to={'/'} onClick={backToMain}>На головну</Link>
+            </div>
             <div className='title'>Оберіть категорію для додавання слів</div>
             <div className='categories-wrapper'>
                 {
@@ -69,20 +72,20 @@ export const NewWord = (props) => {
                         <input ref={ukrWordInput} className="newword__input" placeholder='Додайте переклад цього слова на українській мові або декілька слів-синонімів'></input>
                         <button className='newword__button' onClick={addNewWord}>Додати</button>
                     </div>
-                    <table className={categorySelected?'statistics__table-wrapper active':'statistics__table-wrapper'}>
+                    <table className='vocabulary__table-wrapper'>
                         <thead>
-                            <tr>
-                                <th>Слово</th>
-                                <th>Переклад</th>
+                            <tr className='vocabulary__row'>
+                                <th className='vocabulary__eng'>Слово</th>
+                                <th className='vocabulary__ukr'>Переклад</th>
                             </tr>
                         </thead>
                         <tbody>
                             {arrayWord?.map((item, index)=>{
                                 return(
-                                    <tr key={index} className='statistics__row'>
-                                        <td className='statistics__word'>{item.eng}</td>
-                                        <td className='statistics__right --newword-table'>{item.translates.length>1? item.translates.join(', '): item.translates}
-                                        <Basket className="statistics__delete" onClick={()=>deleteWord(index)}/></td>
+                                    <tr key={index} className='vocabulary__row'>
+                                        <td className='vocabulary__word'>{item.eng}</td>
+                                        <td className='vocabulary__right --newword-table'>{item.translates.length>1? item.translates.join(', '): item.translates}
+                                        <Basket className="vocabulary__delete" onClick={()=>deleteWord(index)}/></td>
                                     </tr>
                                 )
                             })

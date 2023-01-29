@@ -96,7 +96,7 @@ export const SetWord = (props) =>{
     return(
         <div className='word__container'> 
             <div className='word__eng-variant'>{props.words[indexWord].eng}</div>
-            <input ref={inputWord} className={falseWord?'word__input': 'word__input wrong'} placeholder='Перевод...' onKeyUp={(e)=>{pressEnter(e)}}></input>
+            <input ref={inputWord} className={falseWord?'word__input': 'word__input wrong'} placeholder='Переклад...' onKeyUp={(e)=>{pressEnter(e)}}></input>
             <div className={falseWord? 'word__notice': 'word__notice active'}>Неправильно! Спробуйте ще раз.</div>
             <button className='word__button' type='button' onClick={onHandle}>Перевірити</button>
         </div>
