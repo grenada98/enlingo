@@ -72,27 +72,31 @@ export const NewWord = (props) => {
                         <input ref={ukrWordInput} className="newword__input" placeholder='Додайте переклад цього слова на українській мові або декілька слів-синонімів'></input>
                         <button className='newword__button' onClick={addNewWord}>Додати</button>
                     </div>
-                    <table className='vocabulary__table-wrapper'>
-                        <thead>
-                            <tr className='vocabulary__row'>
-                                <th className='vocabulary__eng'>Слово</th>
-                                <th className='vocabulary__ukr'>Переклад</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {arrayWord?.map((item, index)=>{
-                                return(
-                                    <tr key={index} className='vocabulary__row'>
-                                        <td className='vocabulary__word'>{item.eng}</td>
-                                        <td className='vocabulary__right --newword-table'>{item.translates.length>1? item.translates.join(', '): item.translates}
-                                        <Basket className="vocabulary__delete" onClick={()=>deleteWord(index)}/></td>
+                    {arrayWord?
+                        <>
+                            <table className='vocabulary__table-wrapper'>
+                                <thead>
+                                    <tr className='vocabulary__row'>
+                                        <th className='vocabulary__eng'>Слово</th>
+                                        <th className='vocabulary__ukr'>Переклад</th>
                                     </tr>
-                                )
-                            })
-                            }
-                        </tbody>
-                    </table>
-                    {arrayWord?<div className='title'>Всього в категорії {arrayWord.length} слів (слово)</div> : null}
+                                </thead>
+                                <tbody>
+                                    {arrayWord?.map((item, index)=>{
+                                        return(
+                                            <tr key={index} className='vocabulary__row'>
+                                                <td className='vocabulary__word'>{item.eng}</td>
+                                                <td className='vocabulary__right --newword-table'>{item.translates.length>1? item.translates.join(', '): item.translates}
+                                                <Basket className="vocabulary__delete" onClick={()=>deleteWord(index)}/></td>
+                                            </tr>
+                                        )
+                                    })
+                                    }
+                                </tbody>
+                            </table>
+                            <div className='title'>Всього в категорії {arrayWord.length} слів (слово)</div>
+                        </>
+                        : null}
                 </div>
                 : null
             }

@@ -39,6 +39,10 @@ $maxWidth: 1280;
 .route-pages{
     display: flex;
     justify-content: center;
+    @media (max-width: 400px){
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 .statistics,
 .add-words,
@@ -48,12 +52,18 @@ $maxWidth: 1280;
     font-size: 24px;
     text-decoration: underline;
     text-align: center;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     margin-right: 50px;
     margin-bottom: 20px;
     transition: 0.3s;
     &:hover{
         color: rgb(132, 183, 241);
+    }
+    @media (max-width: 400px) {
+        margin-right: 0;
+        justify-content: center;
     }
 }
 .to-main{
@@ -197,10 +207,10 @@ tbody{
 }
 .statistics{
     &__table-wrapper{
+        table-layout: fixed;
         width: 100%;
-        display: none;
-        &.active{
-            display: table;
+        th{
+            @include adaptiv-font(30, 8); 
         }
     }
     &__row{
@@ -211,6 +221,7 @@ tbody{
             border-left: 1px solid black;
             padding-left: 10px;
             width: 50%;
+            @include adaptiv-font(30, 14);
             &:first-child{
                 text-align: end;
                 border-left: none;  
@@ -220,11 +231,6 @@ tbody{
         &:nth-child(2n){
             background-color: #f2f1f1;
         }
-    }
-    &__delete{
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
     }
 }
 .vocabulary{
@@ -253,6 +259,15 @@ tbody{
         width: 40px;
         height: 40px;
         cursor: pointer;
+        .basket{
+            color: black;
+            transition: 0.4s;
+        }
+        &:hover{
+            .basket{
+                color: red;
+            }
+        }
     }
 }
 .notice{

@@ -13,7 +13,7 @@ export const Statistics = (props) => {
             <Link className='main-page' 
                 onClick={props.setCategoryPageActive} to="/"
             >Головна сторінка</Link>
-            <table className={props.isLocal?'statistics__table-wrapper active':'statistics__table-wrapper'}>
+            {props.isLocal?<table className='statistics__table-wrapper'>
                 <thead>
                     <tr>
                         <th>Слово</th>
@@ -29,17 +29,14 @@ export const Statistics = (props) => {
                                 <td className='statistics__word'>{item.name}</td>
                                 <td className='statistics__right'>{item.right}</td>
                                 <td className='statistics__wrong'>{item.wrong}</td>
-                                <td className='statistics__wrong'>{(item.right/(item.right + item.wrong)).toFixed(2)}</td>
+                                <td className='statistics__wrong'>{(item.right/(item.right + item.wrong)*100)}</td>
                             </tr>
                         )
                     })
                     }
                 </tbody>
-            </table>
-            {
-                !props.isLocal?(
+            </table>:
                     <div className='notice'>Ви ще не проходили навчання!</div>
-                    ) : null
             }
             <Routes>
                 <Route path="/" element={<CategoryPage/>}/>
